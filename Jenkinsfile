@@ -53,6 +53,16 @@ pipeline {
                 )
             }
         }
+        stage('SomkeTest') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh "curl ${env.KUBE_MASTER_IP}:8080"
+            }
+           
+        }
+        
         stage('DeployToProduction') {
             when {
                 branch 'master'
